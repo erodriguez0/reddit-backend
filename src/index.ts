@@ -1,4 +1,6 @@
+import { Scalar } from '@scalar/hono-api-reference';
 import { Hono } from 'hono';
+import { openAPIRouteHandler } from 'hono-openapi';
 
 import { errorHandler } from '@/middleware/error-handler.middleware';
 
@@ -9,6 +11,27 @@ const app = new Hono().basePath('/api');
 app.get('/', (c) => {
   return c.text('Hello Hono!');
 });
+
+app.get(
+  '/openapi',
+  openAPIRouteHandler(app, {
+    documentation: {
+      info: {
+        title: 'Reddit API',
+        version: '1.0.0',
+        description: 'Reddit API',
+      },
+      servers: [
+        {
+          url: 'http://localhost:5000',
+          description: 'Local server',
+        },
+      ],
+    },
+  })
+);
+
+app.get('/docs', Scalar({ theme: 'default', url: '/api/openapi' }));
 
 app.route('/auth', authRoutes);
 

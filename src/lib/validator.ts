@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator';
 import { ValidationTargets } from 'hono';
-import z, { ZodError } from 'zod';
+import { z } from 'zod';
 
 import { APIException } from '@/exceptions/http.exception';
 

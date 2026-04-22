@@ -1,12 +1,8 @@
 import { HTTPException } from 'hono/http-exception';
 import { ContentfulStatusCode } from 'hono/utils/http-status';
-import z, { ZodError } from 'zod';
+import { z } from 'zod';
 
-export type APIError = {
-  field?: string | number;
-  message: string;
-  code?: string;
-};
+import { APIError } from '@/schemas/error.schema';
 
 export class APIException extends HTTPException {
   public errors?: APIError[];
