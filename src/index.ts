@@ -5,6 +5,7 @@ import { openAPIRouteHandler } from 'hono-openapi';
 import { errorHandler } from '@/middleware/error-handler.middleware';
 
 import authRoutes from '@/routes/auth.route';
+import userRoutes from '@/routes/user.route';
 
 const app = new Hono().basePath('/api');
 
@@ -34,6 +35,7 @@ app.get(
 app.get('/docs', Scalar({ theme: 'default', url: '/api/openapi' }));
 
 app.route('/auth', authRoutes);
+app.route('/user', userRoutes);
 
 app.onError(errorHandler);
 

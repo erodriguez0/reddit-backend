@@ -48,6 +48,9 @@ authRoutes.post(
       },
       401: {
         description: 'Invalid credentials',
+        content: {
+          'application/json': { schema: resolver(APIErrorSchema) },
+        },
       },
       422: {
         description: 'Validation failed',

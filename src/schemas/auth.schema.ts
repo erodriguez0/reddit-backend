@@ -1,15 +1,13 @@
 import { z } from '@hono/zod-openapi';
 
+import { image, password, username } from '@/schemas/index.schema';
+
 export const SignUpSchema = z
   .object({
     email: z.email({ error: 'Invalid email address' }).nullish(),
-    username: z
-      .string()
-      .min(3, { error: 'Username must be at least 3 characters' })
-      .max(20, { error: 'Username must be at most 20 characters' })
-      .regex(/^[a-zA-Z0-9_]+$/, { error: 'Username can only be letters, number, and underscores' }),
-    password: z.string(),
-    confirm: z.string(),
+    username: username,
+    password: password,
+    confirm: password,
   })
   .refine((data) => data.password === data.confirm, {
     error: "Passwords don't match",
@@ -17,12 +15,8 @@ export const SignUpSchema = z
   });
 
 export const SignInSchema = z.object({
-  username: z
-    .string()
-    .min(3, { error: 'Username must be at least 3 characters' })
-    .max(20, { error: 'Username must be at most 20 characters' })
-    .regex(/^[a-zA-Z0-9_]+$/, { error: 'Username can only be letters, number, and underscores' }),
-  password: z.string(),
+  username: username,
+  password: password,
 });
 
 export const AuthResponseSchema = z.object({
@@ -30,7 +24,7 @@ export const AuthResponseSchema = z.object({
   user: z.object({
     username: z.string(),
     displayUsername: z.string(),
-    image: z.url({ error: 'Invalid image URL' }).nullish(),
+    image: image,
     createdAt: z.date(),
     updatedAt: z.date(),
   }),

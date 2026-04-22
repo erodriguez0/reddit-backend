@@ -28,3 +28,15 @@ export class APIException extends HTTPException {
     return new APIException(422, { message: 'Validation failed', errors: details });
   }
 }
+
+export class BadRequestException extends HTTPException {
+  constructor(message?: string) {
+    super(404, { message: message || 'Bad request' });
+  }
+}
+
+export class NotFoundException extends HTTPException {
+  constructor(resource = 'Resouce') {
+    super(404, { message: `${resource} not found` });
+  }
+}
