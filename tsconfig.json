@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "types": ["node"],
+    "paths": {
+      "@/app": ["./src/index"],
+      "@/generated/*": ["./src/generated/*"],
+      "@/schemas/*": ["./src/schemas/*"],
+      "@/services/*": ["./src/services/*"],
+      "@/controllers/*": ["./src/controllers/*"],
+      "@/routes/*": ["./src/routes/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/middleware/*": ["./src/middleware/*"],
+      "@/exceptions/*": ["./src/exceptions/*"],
+      "@/types/*": ["./src/types/*"],
+
+      "@/v1": ["./src/api/v1"],
+      "@/v1/controllers/*": ["./src/v1/controllers/*"],
+      "@/v1/middleware/*": ["./src/v1/middleware/*"],
+      "@/v1/schemas/*": ["./src/v1/schemas/*"],
+      "@/v1/services/*": ["./src/v1/services/*"],
+      "@/v1/types/*": ["./src/v1/types/*"]
+    }
+  }
+}
